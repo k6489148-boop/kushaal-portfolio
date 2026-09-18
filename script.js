@@ -177,4 +177,127 @@ if (skillSection) {
 
             entries.forEach(function (entry) {
 
-                if (entry.isIntersecting && !skills
+                if (entry.isIntersecting && !skillsAnimated) {
+
+                    skillsAnimated = true;
+
+                    const bars = document.querySelectorAll(
+                        ".skill-progress"
+                    );
+
+                    bars.forEach(function (bar) {
+
+                        bar.classList.add("animate");
+
+                    });
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.25
+        }
+
+    );
+
+    skillObserver.observe(skillSection);
+
+}
+
+
+// ==========================================
+// ACTIVE NAVIGATION LINK
+// ==========================================
+
+const sections = document.querySelectorAll("section[id]");
+
+window.addEventListener("scroll", function () {
+
+    let currentSection = "";
+
+    sections.forEach(function (section) {
+
+        const sectionTop = section.offsetTop - 150;
+
+        if (window.scrollY >= sectionTop) {
+
+            currentSection = section.getAttribute("id");
+
+        }
+
+    });
+
+
+    links.forEach(function (link) {
+
+        link.classList.remove("active");
+
+        const linkTarget = link.getAttribute("href");
+
+        if (linkTarget === "#" + currentSection) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+
+// ==========================================
+// NAVBAR SHADOW WHEN SCROLLING
+// ==========================================
+
+const header = document.querySelector(".header");
+
+window.addEventListener("scroll", function () {
+
+    if (!header) {
+        return;
+    }
+
+    if (window.scrollY > 50) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+});
+
+
+// ==========================================
+// CURRENT YEAR
+// ==========================================
+
+const copyright = document.querySelector(".copyright");
+
+if (copyright) {
+
+    const currentYear = new Date().getFullYear();
+
+    copyright.textContent =
+        "© " + currentYear +
+        " Kushaal. Learning. Building. Improving.";
+
+}
+
+
+// ==========================================
+// WELCOME MESSAGE
+// ==========================================
+
+console.log(
+    "🚀 Welcome to Kushaal's portfolio!"
+);
+
+console.log(
+    "HTML + CSS + JavaScript = Web Development 🔥"
+);
